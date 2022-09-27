@@ -1,7 +1,8 @@
 use crate::square_walls::SquareWalls;
 use crate::wall::Wall;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
+#[derive(Clone)]
 pub struct Grid {
     column_count: i32,
     row_count: i32,
@@ -21,6 +22,14 @@ impl Grid {
         };
         new_grid.recalculate_wall_count();
         return new_grid;
+    }
+
+    pub fn column_count(&self) -> i32 {
+        self.column_count
+    }
+
+    pub fn row_count(&self) -> i32 {
+        self.row_count
     }
 
     pub fn set_wall(&mut self, is_column: bool, column: i32, row: i32, set: bool) {
@@ -78,7 +87,7 @@ impl Grid {
         }
     }
 
-    pub fn set_wall_with_wall(&mut self, wall: Wall, set: bool) {
+    pub fn set_wall_with_wall(&mut self, wall: &Wall, set: bool) {
         self.set_wall(wall.is_column, wall.column, wall.row, set);
     }
 
@@ -223,7 +232,7 @@ impl Grid {
         self.wall_count[column as usize][row as usize]
     }
 
-    pub fn get_optimal_moves() -> HashSet<Wall> {
-        panic!("Not Implemented")
+    pub fn get_optimal_moves(&self) -> HashSet<Wall> {
+        HashSet::new()
     }
 }
